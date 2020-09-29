@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.bme.aut.androidwallet.MainActivity">
+
+
+    <EditText
+        android:id="@+id/salary_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionNext"
+        android:inputType="textCapWords"
+        android:singleLine="true"
+        app:layout_constraintBaseline_toBaselineOf="@+id/salary_amount"
+        app:layout_constraintEnd_toStartOf="@+id/salary_amount"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/salary_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/salary_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ToggleButton
+        android:id="@+id/expense_or_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="@string/income"
+        android:textOn="@string/expense"
+        app:layout_constraintBaseline_toBaselineOf="@+id/save_button"
+        app:layout_constraintEnd_toStartOf="@+id/save_button" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/salary_name" />
+
+
+    <TextView
+        android:id="@+id/summary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_button"
+        android:layout_margin="10dp" />
+
+
+    <LinearLayout
+        android:id="@+id/list_of_rows"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summary_text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
