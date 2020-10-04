@@ -5,30 +5,60 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="2"
     tools:context="hu.bme.aut.androidwallet.MainActivity">
 
 
-    <EditText
-        android:id="@+id/salary_name"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/input_fields_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:imeOptions="actionNext"
-        android:inputType="textCapWords"
-        android:singleLine="true"
-        app:layout_constraintBaseline_toBaselineOf="@+id/salary_amount"
-        app:layout_constraintEnd_toStartOf="@+id/salary_amount"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/salary_amount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:singleLine="true"
+        android:layout_weight="2"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/salary_name"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/salary_name_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/salary_amount_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <EditText
+                android:id="@+id/salary_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:singleLine="true" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/salary_amount_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/salary_name_layout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/salary_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <ToggleButton
         android:id="@+id/expense_or_income"
@@ -46,16 +76,17 @@
         android:baselineAligned="false"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/salary_name" />
+        app:layout_constraintTop_toBottomOf="@+id/input_fields_layout" />
 
 
     <TextView
         android:id="@+id/summary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save_button"
-        android:layout_margin="10dp" />
+        app:layout_constraintTop_toBottomOf="@+id/save_button" />
 
 
     <LinearLayout

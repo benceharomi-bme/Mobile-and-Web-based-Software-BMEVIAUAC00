@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.core.view.forEach
+import androidx.core.view.isInvisible
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.salary_row.view.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 list_of_rows.removeAllViews()
                 sum = 0
                 summary_text.text = "$sum"
+                summary_text.visibility = INVISIBLE
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -58,7 +63,8 @@ class MainActivity : AppCompatActivity() {
             )
             rowItem.row_salary_name.text = salary_name.text.toString()
             rowItem.row_salary_amount.text = salary_amount.text.toString()
-            list_of_rows.addView(rowItem)
+            list_of_rows. addView(rowItem)
+            summary_text.visibility = VISIBLE
             summary_text.text = "$sum"
         }
     }
