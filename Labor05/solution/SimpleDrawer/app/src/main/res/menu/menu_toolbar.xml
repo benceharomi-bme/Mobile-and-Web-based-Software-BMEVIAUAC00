@@ -21,6 +21,29 @@
         </menu>
     </item>
     <item
+        android:id="@+id/menu_color"
+        android:checkableBehavior="single"
+        android:icon="@drawable/ic_color"
+        android:title="@string/color"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_color_red"
+                    android:checked="false"
+                    android:title="@string/red"/>
+                <item
+                    android:id="@+id/menu_color_green"
+                    android:checked="true"
+                    android:title="@string/green" />
+                <item
+                    android:id="@+id/menu_color_blue"
+                    android:checked="false"
+                    android:title="@string/blue" />
+            </group>
+        </menu>
+    </item>
+    <item
         android:id="@+id/menu_clear_canvas"
         android:checkableBehavior="single"
         android:icon="@drawable/ic_clear_canvas"

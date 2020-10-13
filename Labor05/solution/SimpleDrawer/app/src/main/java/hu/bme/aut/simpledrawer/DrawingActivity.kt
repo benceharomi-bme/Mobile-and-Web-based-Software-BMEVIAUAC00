@@ -1,5 +1,6 @@
 package hu.bme.aut.simpledrawer
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -62,6 +63,21 @@ class DrawingActivity : AppCompatActivity() {
             }
             R.id.menu_style_point -> {
                 canvas.currentDrawingStyle = DrawingView.DRAWINGSTYLE_POINT
+                item.isChecked = true
+                true
+            }
+            R.id.menu_color_red -> {
+                canvas.currentDrawingColor = Color.RED
+                item.isChecked = true
+                true
+            }
+            R.id.menu_color_green -> {
+                canvas.currentDrawingColor = Color.GREEN
+                item.isChecked = true
+                true
+            }
+            R.id.menu_color_blue -> {
+                canvas.currentDrawingColor = Color.BLUE
                 item.isChecked = true
                 true
             }

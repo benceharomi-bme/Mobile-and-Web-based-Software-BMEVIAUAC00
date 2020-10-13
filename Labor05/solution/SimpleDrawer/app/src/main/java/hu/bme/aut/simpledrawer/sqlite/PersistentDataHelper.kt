@@ -15,7 +15,8 @@ class PersistentDataHelper(context: Context) {
     private val pointColumns = arrayOf<String>(
         DbConstants.Points.Columns._id.name,
         DbConstants.Points.Columns.coord_x.name,
-        DbConstants.Points.Columns.coord_y.name
+        DbConstants.Points.Columns.coord_y.name,
+        DbConstants.Points.Columns.color.name
     )
 
     private val lineColumns = arrayOf<String>(
@@ -23,8 +24,8 @@ class PersistentDataHelper(context: Context) {
         DbConstants.Lines.Columns.start_x.name,
         DbConstants.Lines.Columns.start_y.name,
         DbConstants.Lines.Columns.end_x.name,
-        DbConstants.Lines.Columns.end_y.name
-
+        DbConstants.Lines.Columns.end_y.name,
+        DbConstants.Lines.Columns.color.name
     )
 
     @Throws(SQLiteException::class)
@@ -42,6 +43,7 @@ class PersistentDataHelper(context: Context) {
             val values = ContentValues()
             values.put(DbConstants.Points.Columns.coord_x.name, point.x)
             values.put(DbConstants.Points.Columns.coord_y.name, point.y)
+            values.put(DbConstants.Points.Columns.color.name, point.color)
             database!!.insert(DbConstants.Points.DATABASE_TABLE, null, values)
         }
     }
@@ -68,6 +70,7 @@ class PersistentDataHelper(context: Context) {
         val point = Point()
         point.x =cursor.getFloat(DbConstants.Points.Columns.coord_x.ordinal)
         point.y =cursor.getFloat(DbConstants.Points.Columns.coord_y.ordinal)
+        point.color =cursor.getInt(DbConstants.Points.Columns.color.ordinal)
         return point
     }
 
@@ -79,6 +82,7 @@ class PersistentDataHelper(context: Context) {
             values.put(DbConstants.Lines.Columns.start_y.name, line.start?.y)
             values.put(DbConstants.Lines.Columns.end_x.name, line.end?.x)
             values.put(DbConstants.Lines.Columns.end_y.name, line.end?.y)
+            values.put(DbConstants.Lines.Columns.color.name, line.color)
             database!!.insert(DbConstants.Lines.DATABASE_TABLE, null, values)
         }
     }
@@ -111,6 +115,7 @@ class PersistentDataHelper(context: Context) {
         endPoint.x =cursor.getFloat(DbConstants.Lines.Columns.end_x.ordinal)
         endPoint.y =cursor.getFloat(DbConstants.Lines.Columns.end_y.ordinal)
         line.end = endPoint
+        line.color =cursor.getInt(DbConstants.Lines.Columns.color.ordinal)
         return line
     }
 

@@ -28,6 +28,8 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     var points: MutableList<Point>? = null
 
+    var currentDrawingColor: Int = Color.GREEN
+
     init {
         initPaint()
         initLists()
@@ -35,7 +37,7 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     private fun initPaint() {
         paint = Paint()
-        paint.color = Color.GREEN
+        paint.color = currentDrawingColor
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 5F
     }
@@ -46,7 +48,7 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        endPoint = Point(event.x, event.y)
+        endPoint = Point(event.x, event.y, currentDrawingColor)
         when (event.action) {
             MotionEvent.ACTION_DOWN -> startPoint = Point(event.x, event.y)
             MotionEvent.ACTION_MOVE -> {
@@ -54,7 +56,10 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             MotionEvent.ACTION_UP -> {
                 when (currentDrawingStyle) {
                     DRAWINGSTYLE_POINT -> addPointToTheList(endPoint!!)
-                    DRAWINGSTYLE_LINE -> addLineToTheList(startPoint!!, endPoint!!)
+                    DRAWINGSTYLE_LINE -> addLineToTheList(
+                        startPoint!!,
+                        endPoint!!
+                    )
                 }
                 startPoint = null
                 endPoint = null
@@ -70,7 +75,7 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun addLineToTheList(startPoint: Point, endPoint: Point) {
-        lines?.add(Line(startPoint, endPoint))
+        lines?.add(Line(startPoint, endPoint, endPoint.color))
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -79,11 +84,11 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             drawPoint(canvas, point)
         }
         for (line in lines!!) {
-            drawLine(canvas, line.start, line.end)
+            drawLine(canvas, line.start, line.end, line.color)
         }
         when (currentDrawingStyle) {
             DRAWINGSTYLE_POINT -> drawPoint(canvas, endPoint)
-            DRAWINGSTYLE_LINE -> drawLine(canvas, startPoint, endPoint)
+            DRAWINGSTYLE_LINE -> drawLine(canvas, startPoint, endPoint, currentDrawingColor)
         }
     }
 
@@ -91,13 +96,15 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         if (point == null) {
             return
         }
+        paint.color = point.color!!
         canvas.drawPoint(point.x, point.y, paint)
     }
 
-    private fun drawLine(canvas: Canvas, startPoint: Point?, endPoint: Point?) {
-        if (startPoint == null || endPoint == null) {
+    private fun drawLine(canvas: Canvas, startPoint: Point?, endPoint: Point?, color: Int?) {
+        if (startPoint == null || endPoint == null || color == null) {
             return
         }
+        paint.color = color
         canvas.drawLine(
             startPoint.x,
             startPoint.y,
@@ -113,7 +120,7 @@ class DrawingView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         invalidate()
     }
 
-    fun clear(){
+    fun clear() {
         lines?.clear()
         points?.clear()
         invalidate()
