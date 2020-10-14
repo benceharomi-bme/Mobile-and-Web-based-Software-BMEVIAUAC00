@@ -15,4 +15,7 @@ interface ShoppingItemDao {
 
     @Delete
     fun deleteItem(shoppingItem: ShoppingItem)
+
+    @Query("DELETE FROM shoppingitem")
+    fun deleteAll()
 }

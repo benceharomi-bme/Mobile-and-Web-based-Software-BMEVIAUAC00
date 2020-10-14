@@ -14,7 +14,12 @@
     <string name="category">Category</string>
     <string name="estimated_price">Estimated price</string>
     <string name="already_purchased">Already purchased</string>
-    <string name="itemRemovedMessage">Item removed successfully</string>
+    <string name="item_removed_message">Item removed successfully</string>
+    <string name="remove_all">Remove all</string>
+    <string name="remove_all_dialog_message">Do you really want to remove all items?</string>
+    <string name="all_items_removed_message">All items removed successfully</string>
+    <string name="no_item_to_remove">No item to remove</string>
+    <string name="edit_shopping_item">Edit shopping item</string>
     <string-array name="category_items">
         <item>Food</item>
         <item>Electronic</item>

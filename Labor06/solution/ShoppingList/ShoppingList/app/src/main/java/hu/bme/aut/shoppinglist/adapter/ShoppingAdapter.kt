@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import hu.bme.aut.shoppinglist.R
 import hu.bme.aut.shoppinglist.data.ShoppingItem
+import hu.bme.aut.shoppinglist.fragments.NewShoppingItemDialogFragment
 
 class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
     RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>() {
@@ -41,6 +42,7 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
     interface ShoppingItemClickListener {
         fun onItemChanged(item: ShoppingItem)
         fun onItemRemoved(item: ShoppingItem)
+        fun onItemEdited(item: ShoppingItem)
     }
 
     @DrawableRes
@@ -53,6 +55,18 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
     fun addItem(item: ShoppingItem) {
         items.add(item)
         notifyItemInserted(items.size - 1)
+    }
+
+    fun editItem(item: ShoppingItem) {
+        var position = items.indexOf(items.find { it -> it.id == item.id })
+        items.removeAt(position)
+        items.add(position, item)
+        notifyItemChanged(position)
+    }
+
+    fun removeAll() {
+        items.clear()
+        notifyDataSetChanged()
     }
 
     fun update(shoppingItems: List<ShoppingItem>) {
@@ -69,6 +83,7 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
         val priceTextView: TextView
         val isBoughtCheckBox: CheckBox
         val removeButton: ImageButton
+        val editButton: ImageButton
 
         var item: ShoppingItem? = null
 
@@ -79,14 +94,21 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
             categoryTextView = itemView.findViewById(R.id.ShoppingItemCategoryTextView)
             priceTextView = itemView.findViewById(R.id.ShoppingItemPriceTextView)
             isBoughtCheckBox = itemView.findViewById(R.id.ShoppingItemIsBoughtCheckBox)
+            editButton = itemView.findViewById(R.id.ShoppingItemEditButton)
             removeButton = itemView.findViewById(R.id.ShoppingItemRemoveButton)
-            isBoughtCheckBox.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            isBoughtCheckBox.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
                 item?.let {
                     val newItem = it.copy(
                         isBought = isChecked
                     )
                     item = newItem
                     listener.onItemChanged(newItem)
+                }
+            })
+            editButton.setOnClickListener(View.OnClickListener { view ->
+                item?.let {
+                    val position = items.indexOf(it)
+                    listener.onItemEdited(it)
                 }
             })
             removeButton.setOnClickListener(View.OnClickListener { view ->
@@ -96,7 +118,7 @@ class ShoppingAdapter(private val listener: ShoppingItemClickListener) :
                     listener.onItemRemoved(it)
                     notifyItemRemoved(position)
                     Snackbar.make(
-                        view, R.string.itemRemovedMessage, BaseTransientBottomBar.LENGTH_SHORT
+                        view, R.string.item_removed_message, BaseTransientBottomBar.LENGTH_SHORT
                     ).show()
                 }
             })

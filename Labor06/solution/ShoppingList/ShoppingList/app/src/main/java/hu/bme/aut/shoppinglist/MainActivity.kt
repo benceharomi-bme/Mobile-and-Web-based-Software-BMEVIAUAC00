@@ -1,17 +1,16 @@
 package hu.bme.aut.shoppinglist
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import hu.bme.aut.shoppinglist.adapter.ShoppingAdapter
 import hu.bme.aut.shoppinglist.data.ShoppingItem
 import hu.bme.aut.shoppinglist.data.ShoppingListDatabase
@@ -62,6 +61,17 @@ class MainActivity : AppCompatActivity(), ShoppingAdapter.ShoppingItemClickListe
         }
     }
 
+    private fun removeAllItems() {
+        thread {
+            database.shoppingItemDao().deleteAll()
+            Log.d("MainActivity", "All ShoppingItems removed successfully")
+            runOnUiThread {
+                adapter.removeAll()
+
+            }
+        }
+    }
+
     override fun onItemChanged(item: ShoppingItem) {
         thread {
             database.shoppingItemDao().update(item)
@@ -76,6 +86,14 @@ class MainActivity : AppCompatActivity(), ShoppingAdapter.ShoppingItemClickListe
         }
     }
 
+    override fun onItemEdited(item: ShoppingItem) {
+        NewShoppingItemDialogFragment(item).show(
+            supportFragmentManager,
+            NewShoppingItemDialogFragment.TAG
+        )
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -88,8 +106,35 @@ class MainActivity : AppCompatActivity(), ShoppingAdapter.ShoppingItemClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.remove_all -> {
+                removeAllDialog()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun removeAllDialog() {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.remove_all_dialog_message)
+            .setPositiveButton(R.string.ok) { _, _ ->
+                if (adapter.itemCount > 0) {
+                    removeAllItems()
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        R.string.all_items_removed_message,
+                        BaseTransientBottomBar.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        R.string.no_item_to_remove,
+                        BaseTransientBottomBar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     override fun onShoppingItemCreated(newItem: ShoppingItem) {
@@ -100,6 +145,16 @@ class MainActivity : AppCompatActivity(), ShoppingAdapter.ShoppingItemClickListe
             )
             runOnUiThread {
                 adapter.addItem(newShoppingItem)
+            }
+        }
+    }
+
+    override fun onShoppingItemEdited(item: ShoppingItem) {
+        thread {
+            database.shoppingItemDao().update(item)
+
+            runOnUiThread {
+                adapter.editItem(item)
             }
         }
     }
