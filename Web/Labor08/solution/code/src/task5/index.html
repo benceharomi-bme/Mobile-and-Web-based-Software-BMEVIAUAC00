@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <title>Űrlap</title>
+  </head>
+  <body>
+    <form action="/postform.html" method="get">
+      <div>
+        <label for="txtName">Név:</label>
+        <input id="txtName" name="name" type="text" required>
+      </div>
+
+      <div>
+        <label for="txtPassword">Jelszó:</label>
+        <input id="txtPassword" name="password" type="password" value="mobweb" required>
+      </div>
+
+      <div>
+        <label for="txtDescription">Leírás:</label>
+        <textarea id="txtDescription" name="description" type="text"></textarea>
+      </div>
+
+      <div>
+        <label for="txtBirthDate">Születési dátum:</label>
+        <input id="txtBirthDate" name="birthDate" type="date" required>
+      </div>
+
+      <div>
+        <label for="selectSex">Nem:</label>
+        <select id="selectSex" name="sex">
+          <option value="male">Férfi</option>
+          <option value="female">Nő</option>
+          <option value="other">Egyéb</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="txtShoeSize">Lábméret:</label>
+        <input id="txtShoeSize" name="shoeSize" type="number" step="0.5">
+      </div>
+
+      <div>
+        <label for="chbDog">Kutya:</label>
+        <input id="chbDog" name="dog" type="radio">Igen
+        <input id="chbDog" name="dog" type="radio">Nem
+      </div>
+
+      <button type="submit">Küldés</button>
+
+    </form>
+  </body>
+</html>
