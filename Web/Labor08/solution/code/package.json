@@ -1,0 +1,14 @@
+{
+  "name": "lab08",
+  "version": "1.0.0",
+  "description": "Solution of lab08",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "task4": "http-server ./src/task4",
+    "task5": "http-server ./src/task5"
+  }
+}
