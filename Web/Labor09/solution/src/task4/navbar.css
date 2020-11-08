@@ -4,7 +4,6 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  padding-bottom: 16px;
 }
 
 div.logo{
@@ -35,4 +34,8 @@ header a {
 header .btn-login {
   float: right;
   padding-right: 20px;
+}
+
+main {
+  clear: both;
 }
