@@ -1,0 +1,38 @@
+.page-header {
+  height: 60px;
+  background-color: #a7190e;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-bottom: 16px;
+}
+
+div.logo{
+  float: left;
+}
+
+header ul {
+  margin: 0px;
+  list-style: none;
+}
+
+header ul :hover {
+  background-color: #8b0000;
+}
+
+header li {
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+header a {
+  font-size: 1.1em;
+  color: #ffffff;
+  line-height: 60px;
+}
+
+header .btn-login {
+  float: right;
+  padding-right: 20px;
+}
