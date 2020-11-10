@@ -32,3 +32,24 @@ h1 {
 }
 
 h2 { font-size: 18px; }
+
+.bt-dashed {
+    border-top: 1px dashed #ccc;
+}
+
+a .dark-link {
+    color: #666;
+}
+
+a .dark-link:hover {
+    color: #9c3;
+}
+
+.card-link.smaller {
+    font-size: 12px;
+}
+
+.dark-footer {
+    background-color: black;
+    color: white;
+}

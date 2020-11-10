@@ -16,68 +16,134 @@
     
     <body>
         <header>
-            <!-- TODO: Navigációs sáv formázása a képnek megfelelően -->
-            <nav>
-                <a href="#">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">
                     <img src="/assets/img/logo-bme-aut.png" alt="BME AUT">
                 </a>
 
-                <!-- TODO: Mobil nézetben itt jelenjen meg egy hamburger ikon -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <div id="navbar-toggler">
-                    <ul>
-                        <li>
-                            <a href="/">Home <span class="sr-only">(current)</span></a>
+                <div class="collapse navbar-collapse" id="navbar-toggler">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-ite,">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li>
-                            <a href="register.html">Registration</a>
+                        <li class="nav-ite,">
+                            <a class="nav-link" href="register.html">Registration</a>
                         </li>
                     </ul>
-                    <form>
-                        <input type="search" placeholder="Search" aria-label="Search">
-                        <button type="submit">Search</button>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
             </nav>
         </header>
         
-        <!-- TODO: Blog bejegyzések formázása -->
         <section id="main">
-            <div>
+            <div class="container">
                 <h1>The Blog</h1>
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui <br> blanditiis praesentium</p>
         
-                <div>
-                    <div>
-                        <!-- TODO: Kártya formázása -->
-                        <div>
-                            <a href="#"><img src="assets/img/blog/img1.jpg"></a>
-                            <div>
-                                <h2><a href="#">Amazing Blog Post One</a></h5>
-                                <p>Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                    <div class="col">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="assets/img/blog/img1.jpg"></a>
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="#" class="text-dark">Amazing Blog Post One</a></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
                             </div>
-                            <div>
-                                <a href="#">Read More</a>
-                                <a href="#"><i class="far fa-heart"></i> 59 Likes</a>
-                                <a href="#"><i class="far fa-comments"></i> 120 Comments</a>
+                            <div class="card-footer bt-dashed d-flex justify-content-between">
+                                <a href="#" class="card-link smaller"> <span class="dark-link">Read More></span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-heart"></i> <span class="dark-link">59 Likes</span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-comments"></i> <span class="dark-link">120 Comments</span></a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- TODO: legyen 6 kártya összesen -->
+                    <div class="col">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="assets/img/blog/img2.jpg"></a>
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="#" class="text-dark">Amazing Blog Post One</a></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
+                            </div>
+                            <div class="card-footer bt-dashed d-flex justify-content-between">
+                                <a href="#" class="card-link smaller"> <span class="dark-link">Read More></span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-heart"></i> <span class="dark-link">59 Likes</span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-comments"></i> <span class="dark-link">120 Comments</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="assets/img/blog/img3.jpg"></a>
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="#" class="text-dark">Amazing Blog Post One</a></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
+                            </div>
+                            <div class="card-footer bt-dashed d-flex justify-content-between">
+                                <a href="#" class="card-link smaller"> <span class="dark-link">Read More></span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-heart"></i> <span class="dark-link">59 Likes</span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-comments"></i> <span class="dark-link">120 Comments</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="assets/img/blog/img4.jpg"></a>
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="#" class="text-dark">Amazing Blog Post One</a></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
+                            </div>
+                            <div class="card-footer bt-dashed d-flex justify-content-between">
+                                <a href="#" class="card-link smaller"> <span class="dark-link">Read More></span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-heart"></i> <span class="dark-link">59 Likes</span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-comments"></i> <span class="dark-link">120 Comments</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="assets/img/blog/img5.jpg"></a>
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="#" class="text-dark">Amazing Blog Post One</a></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
+                            </div>
+                            <div class="card-footer bt-dashed d-flex justify-content-between">
+                                <a href="#" class="card-link smaller"> <span class="dark-link">Read More></span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-heart"></i> <span class="dark-link">59 Likes</span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-comments"></i> <span class="dark-link">120 Comments</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="assets/img/blog/img6.jpg"></a>
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="#" class="text-dark">Amazing Blog Post One</a></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, adipisicing elit. Eos rerum dolorum, est voluptatem modi accusantium perspiciatis ...</p>
+                            </div>
+                            <div class="card-footer bt-dashed d-flex justify-content-between">
+                                <a href="#" class="card-link smaller"> <span class="dark-link">Read More></span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-heart"></i> <span class="dark-link">59 Likes</span></a>
+                                <a href="#" class="card-link smaller ml-0"><i class="far fa-comments"></i> <span class="dark-link">120 Comments</span></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- TODO: Oldal lábléc formázása -->
-        <footer>
-            <div>
-                <p>© 2020 BME AUT, All right reserved, Designed by <a href="#">BME AUT</a></p>
-                <div>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+        <footer class="dark-footer mt-4">
+            <div class="d-flex bd-highlight">
+                <p class="bd-highlight p-4 mb-0 ml-5">© 2020 BME AUT, All right reserved, Designed by <a href="#">BME AUT</a></p>
+                <div class="ml-auto bd-highlight p-4 mr-5">
+                    <a href="#" class="flex-fill"><i class="fab fa-lg fa-facebook-f"></i></a>
+                    <a href="#" class="flex-fill ml-3"><i class="fab fa-lg fa-twitter"></i></a>
+                    <a href="#" class="flex-fill ml-3"><i class="fab fa-lg fa-linkedin-in"></i></a>
+                    <a href="#" class="flex-fill ml-3"><i class="fab fa-lg fa-google-plus-g"></i></a>
                 </div>
             </div>
         </footer>
